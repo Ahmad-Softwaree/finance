@@ -1,4 +1,5 @@
 import { SignIn } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import { getTranslations } from "next-intl/server";
 
 export default async function page() {
@@ -14,13 +15,14 @@ export default async function page() {
         </div>
         <SignIn
           appearance={{
+            theme: dark,
             elements: {
               rootBox: "mx-auto",
               card: "shadow-xl border-2 border-border/50",
             },
           }}
           routing="path"
-          path="/sign-in"
+          path="/:locale/sign-in"
           signUpUrl="/sign-up"
           fallbackRedirectUrl="/dashboard"
         />

@@ -60,8 +60,7 @@
   "notFound": {
     "pageNotFound": "Page Not Found",
     "pageNotFoundDescription": "The page you're looking for seems to have wandered off. Let's get you back on track.",
-    "returnHome": "Return Home",
-    "browseProjects": "Browse Projects"
+    "returnHome": "Return Home"
   },
   "signUp": {
     "title": "Create Your Account",

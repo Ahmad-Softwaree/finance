@@ -5,11 +5,15 @@ import ScrollToTop from "@/components/shared/scroll-to-top";
 import Providers from "./providers";
 import Header from "@/components/layouts/header";
 import Footer from "@/components/layouts/footer";
-import { hasLocale, Locale, NextIntlClientProvider } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import { PageTransition } from "@/components/shared/page-transition";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

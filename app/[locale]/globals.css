@@ -261,7 +261,7 @@
     @apply font-tajawal;
   }
   .kurdish_font {
-    @apply font-rudaw;
+    @apply font-speda;
   }
 
   [class*="cl-"] {

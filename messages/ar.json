@@ -60,8 +60,7 @@
   "notFound": {
     "pageNotFound": "الصفحة غير موجودة",
     "pageNotFoundDescription": "يبدو أن الصفحة التي تبحث عنها قد ضاعت. دعنا نعيدك إلى المسار الصحيح.",
-    "returnHome": "العودة للرئيسية",
-    "browseProjects": "تصفح المشاريع"
+    "returnHome": "العودة للرئيسية"
   },
   "signUp": {
     "title": "إنشاء حسابك",

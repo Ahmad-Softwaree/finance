@@ -21,7 +21,7 @@ export default async function page() {
             },
           }}
           routing="path"
-          path="/sign-up"
+          path="/:locale/sign-up"
           signInUrl="/sign-in"
           fallbackRedirectUrl="/dashboard"
         />

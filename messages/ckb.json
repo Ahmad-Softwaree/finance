@@ -60,8 +60,7 @@
   "notFound": {
     "pageNotFound": "پەڕە نەدۆزرایەوە",
     "pageNotFoundDescription": "پەڕەکە کە بەدوایدا دەگەڕێیت لەدەست چووە. با بتگەڕێنینەوە بۆ ڕێگای دروست.",
-    "returnHome": "گەڕانەوە بۆ سەرەکی",
-    "browseProjects": "گەڕان لە پرۆژەکان"
+    "returnHome": "گەڕانەوە بۆ سەرەکی"
   },
   "signUp": {
     "title": "هەژمارەکەت دروست بکە",

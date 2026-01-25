@@ -43,16 +43,6 @@ const NotFoundComponent = () => {
               {t("returnHome")}
             </Link>
           </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="min-w-[160px] rounded-full"
-            asChild>
-            <Link href={`/${locale}/projects`}>
-              <Search className="mr-2 h-5 w-5" />
-              {t("browseProjects")}
-            </Link>
-          </Button>
         </div>
       </div>
     </div>
