@@ -1,28 +1,28 @@
 # 🤖 Agent Instructions & Coding Standards
 
-This file contains **strict coding standards and architecture patterns** for the **Shop** project. All AI agents and developers **MUST** follow these rules to maintain consistency.
+This file contains **strict coding standards and architecture patterns** for the **FinanceTrack** project. All AI agents and developers **MUST** follow these rules to maintain consistency.
 
-## 📚 About Shop
+## 📚 About FinanceTrack
 
-**Shop** is a modern e-commerce web application that provides a seamless online shopping experience. Users can browse products, manage their cart, complete secure purchases with Stripe, and track their orders.
+**FinanceTrack** is a modern expense management web application that provides a seamless financial tracking experience. Users can track expenses, manage budgets, analyze spending patterns, and achieve their financial goals.
 
 ### Core Features:
 
-- 🛍️ **Product Catalog** - Browse thousands of quality products
-- 🛒 **Smart Cart** - Easy cart management with saved items
-- 💳 **Stripe Payments** - Secure checkout with all major payment methods
-- 📦 **Order Tracking** - Real-time delivery tracking
-- 🔐 **Secure Authentication** - User accounts with 2FA support
-- 👤 **User Profiles** - Manage account settings and order history
+- 💰 **Expense Tracking** - Track and categorize expenses in real-time
+- 📊 **Budget Management** - Set and monitor budgets across categories
+- 📈 **Financial Insights** - Visualize spending patterns with interactive charts
+- 🔐 **Secure Authentication** - User accounts with Clerk authentication
+- 👤 **User Profiles** - Manage account settings and preferences
 - 🌍 **Multi-language Support** - Available in English, Arabic, and Kurdish (CKB)
 - 🎨 **Modern UI** - Built with Next.js 16, Tailwind CSS 4, and shadcn/ui
+- 🌙 **Dark/Light Mode** - Seamless theme switching
 
 ### Homepage Sections:
 
-- **Hero Section** - Eye-catching banner about shopping
-- **Features Section** - Highlighting secure shopping, 2FA, Stripe payments, product catalog, smart cart, fast delivery, 24/7 support
-- **How It Works** - Simple 3-step process: Browse & Select → Secure Checkout → Track & Receive
-- **Header** - Navigation with home, login/register, or profile button
+- **Hero Section** - Eye-catching banner about financial management
+- **Features Section** (Future) - Highlighting expense tracking, budgets, insights, security
+- **How It Works** (Future) - Simple process: Track → Analyze → Save
+- **Header** - Navigation with home, sign in/up, or user profile button
 - **Footer** - Links and copyright information
 
 ---
@@ -114,8 +114,16 @@ This file contains **strict coding standards and architecture patterns** for the
 
 #### **Authentication**
 
-- **NextAuth.js v5 (Auth.js)** - Authentication and session management
-- **bcryptjs** - Password hashing (NOT bcrypt)
+- **Clerk** - Authentication and session management
+  - **ALWAYS use Clerk** for all authentication needs
+  - **NEVER use** NextAuth.js, Auth.js, or other auth libraries
+
+#### **Database & ORM**
+
+- **PostgreSQL** - Relational database
+- **Prisma** - Database ORM and migrations
+  - Use Prisma Client for all database queries
+  - Use Prisma Migrate for schema changes
 
 #### **File Uploads** (if needed)
 
@@ -124,15 +132,18 @@ This file contains **strict coding standards and architecture patterns** for the
 ### ❌ FORBIDDEN LIBRARIES
 
 **DO NOT USE:**
-Other form libraries: Formik (use react-hook-form with shadcn/ui Form)
 
+- ❌ Other UI libraries: Material-UI, Ant Design, Chakra UI, etc. (use shadcn/ui only)
+- ❌ Other form libraries: Formik (use react-hook-form with shadcn/ui Form)
 - ❌ Custom HTTP clients: axios, fetch wrappers (use Server Actions instead)
-- ❌ State management: Redux, Zustand, Jotai, Recoil, etc.
+- ❌ State management: Redux (Zustand is approved for client-only state)
 - ❌ CSS frameworks: Bootstrap, Bulma, Foundation, etc.
 - ❌ Icon libraries: Font Awesome, React Icons, Heroicons (use Lucide only)
 - ❌ Other validation: Yup, Joi, class-validator (use Zod only)
 - ❌ Cookie libraries: js-cookie, universal-cookie, react-cookie, or native document.cookie (use cookies-next only)
-- ❌ Raw URL params: searchParams, useSearchParams, URLSearchParams (use nuq
+- ❌ Raw URL params: searchParams, useSearchParams, URLSearchParams (use nuqs only)
+- ❌ Other auth: NextAuth.js, Auth.js, Passport.js (use Clerk only)
+- ❌ Other ORMs: TypeORM, Sequelize, Drizzle (use Prisma only)
   Before adding ANY new library:
 
 1. Check if it's in the APPROVED list
@@ -192,13 +203,11 @@ npx shadcn@latest add dialog
 
 ## 🔄 Data Fetching & Error Handling Architecture
 
-**See:** [docs/data-fetching-error-handling.md](docs/data-fetching-error-handling.md)
+server-first architecture\*\* for data fetching:
 
-This project uses a **unique three-layer architecture** for data fetching:
-
-1. **API Layer** (`lib/config/api.config.ts`) - Fetch wrappers that return error objects
+1. **Server Components (RSC)** - Default for initial data fetching
 2. **Server Actions Layer** (`lib/react-query/actions/*.ts`) - Server-side mutations with `"use server"`
-3. **React Query Layer** (`lib/react-query/queries/*.ts`) - Client-side hooks that throw errors
+3. **React Query Layer** (`lib/react-query/queries/*.ts`) - Client-side hooks for mutations and caching
 
 ### Critical Rules:
 
@@ -225,8 +234,8 @@ This project uses a **unique three-layer architecture** for data fetching:
 ```typescript
 // ❌ WRONG - Server Action
 "use server";
-export async function login(data: LoginFormData) {
-  const result = await post(URLs.LOGIN, data);
+export async function createExpense(data: ExpenseData) {
+  const result = await post(URLs.CREATE_EXPENSE, data);
   if (result.__isError) {
     throw new Error(result.message); // ❌ Can't serialize Error!
   }
@@ -235,8 +244,8 @@ export async function login(data: LoginFormData) {
 
 // ✅ CORRECT - Server Action
 ("use server");
-export async function login(data: LoginFormData) {
-  const result = await post(URLs.LOGIN, data);
+export async function createExpense(data: ExpenseData) {
+  const result = await post(URLs.CREATE_EXPENSE, data);
   if (result && (result as any).__isError) {
     return result; // ✅ Return error object
   }
@@ -244,16 +253,77 @@ export async function login(data: LoginFormData) {
 }
 
 // ✅ CORRECT - React Query Hook
-export const useLogin = () => {
-  const { i18n } = useTranslation();
+export const useCreateExpense = () => {
   return useMutation({
-    mutationFn: async (data: LoginFormData) => {
-      await loginMiddleware(i18n, data);
-      const result = await login(data);
+    mutationFn: async (data: ExpenseData) => {
+      const result = await createExpense(data);
       return throwIfError(result); // ✅ Throw here (client-side)
     },
     onError: (error: ApiError) => {
-      showToast("error", error.message); // ✅ Toast works!
+      toast.error(error.message); // ✅ Toast works!
+    },
+  });
+};
+```
+
+---
+
+## 🔐 Authentication with Clerk
+
+**See:** [docs/authentication.md](docs/authentication.md)
+
+This project uses **Clerk** for authentication:
+
+### Key Files:
+
+- **`proxy.ts`** - Clerk middleware configuration (route protection)
+- **`app/[locale]/(auth)/sign-in/[[...sign-in]]/page.tsx`** - Sign-in page
+- **`app/[locale]/(auth)/sign-up/[[...sign-up]]/page.tsx`** - Sign-up page
+- **`app/[locale]/(auth)/dashboard/page.tsx`** - Protected dashboard
+
+### Critical Rules:
+
+**Route Protection:**
+
+- ✅ Define protected routes in `proxy.ts` using `createRouteMatcher`
+- ✅ Use `isPublicRoute` to allow public access
+- ✅ Use `isProtectedRoute` for admin/protected routes
+- ✅ Redirect authenticated users from auth pages
+
+**Server Components:**
+
+```typescript
+import { auth, currentUser } from "@clerk/nextjs/server";
+
+export default async function ProtectedPage() {
+  const { userId } = await auth();
+  const user = await currentUser();
+
+  if (!userId) {
+    redirect("/sign-in");
+  }
+
+  return <div>Hello {user?.firstName}!</div>;
+}
+```
+
+**Client Components:**
+
+```tsx
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
+export default function Header() {
+  return (
+    <>
+      <SignedOut>
+        <Link href="/sign-in">Sign In</Link>
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </>
+  );
+}    showToast("error", error.message); // ✅ Toast works!
     },
   });
 };
@@ -287,18 +357,18 @@ Before writing ANY code:
 
 ### Authentication
 
-- [ ] Did I use `auth.ts` at root level for NextAuth config?
-- [ ] Did I export `auth as middleware` in `middleware.ts`?
-- [ ] Did I create server actions with `'use server'`?
-- [ ] Did I protect routes using `auth()` or `useSession()`?
-- [ ] Did I use `bcryptjs` for password hashing?
+- [ ] Did I use Clerk for authentication?
+- [ ] Did I configure `proxy.ts` for route protection?
+- [ ] Did I use `auth()` in Server Components?
+- [ ] Did I use `<SignedIn>` / `<SignedOut>` in Client Components?
+- [ ] Did I protect routes using `createRouteMatcher`?
 
 ### Data Fetching
 
-- [ ] Did I create action file in `lib/react-query/actions/`?
-- [ ] Did I create query hooks in `lib/react-query/queries/`?
-- [ ] Did I add query keys to `lib/react-query/keys.ts`?
-- [ ] Did I add URLs to `lib/constants/urls.ts` (if needed)?
+- [ ] Did I create action file in `lib/react-query/actions/` (if needed)?
+- [ ] Did I create query hooks in `lib/react-query/queries/` (if needed)?
+- [ ] Did I add query keys to `lib/react-query/keys.ts` (if needed)?
+- [ ] Did I use Server Components for initial data fetching?
 
 ### Code Quality
 
@@ -323,7 +393,7 @@ Before writing ANY code:
 | Translation   | next-intl             | `useTranslations()` hook              |
 | Auth config   | Clerk                 | `.env` and `proxy.ts`                 |
 | Route protect | Clerk middleware      | `proxy.ts`                            |
-| Password hash | bcryptjs              | `hash()` and `compare()`              |
+| User data     | Clerk                 | `auth()` / `currentUser()`            |
 
 ---
 

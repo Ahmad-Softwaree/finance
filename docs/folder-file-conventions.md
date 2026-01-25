@@ -32,14 +32,29 @@ This document defines the folder structure and file naming conventions used thro
 ```
 app/
 ├── layout.tsx           # Root layout
-├── page.tsx             # Home page
-├── globals.css          # Global styles
-├── [route]/
-│   ├── page.tsx         # Route page component
-│   └── layout.tsx       # Route layout (optional)
-└── l/
-    └── [code]/
-        └── route.ts     # API route handler
+├── page.tsx             # Root redirect page
+├── not-found.tsx        # Global 404 page
+├── [locale]/            # Internationalized routes
+│   ├── layout.tsx       # Locale-specific layout
+│   ├── page.tsx         # Home page
+│   ├── providers.tsx    # Client-side providers
+│   ├── globals.css      # Global styles
+│   ├── error.tsx        # Error boundary
+│   ├── loading.tsx      # Loading UI
+│   ├── not-found.tsx    # Locale-specific 404
+│   ├── (auth)/          # Auth route group
+│   │   ├── sign-in/
+│   │   │   └── [[...sign-in]]/
+│   │   │       └── page.tsx
+│   │   ├── sign-up/
+│   │   │   └── [[...sign-up]]/
+│   │   │       └── page.tsx
+│   │   └── dashboard/
+│   │       └── page.tsx
+│   └── (root)/          # Public route group (future)
+└── api/                 # API routes
+    └── [route]/
+        └── route.ts
 ```
 
 **Rules**:
@@ -48,6 +63,7 @@ app/
 - Use `layout.tsx` for layouts
 - Use `route.ts` for API routes
 - Use `[param]` for dynamic segments
+- Use `(group)` for route groups (doesn't affect URL)
 - Keep route folders lowercase with hyphens
 
 ### `/components` - React Components
@@ -56,28 +72,30 @@ app/
 
 ```
 components/
-├── ui/                  # shadcn/ui components
+├── ui/                  # shadcn/ui components ONLY
 │   ├── button.tsx
 │   ├── card.tsx
 │   └── [component].tsx
-├── shared/              # Shared/reusable components
+├── layouts/             # Layout components
 │   ├── header.tsx
+│   └── footer.tsx
+├── sections/            # Page section components
+│   ├── hero-section.tsx
+│   └── [section].tsx
+├── shared/              # Globally shared utilities
+│   ├── animate.tsx
 │   ├── Modal.tsx
-│   └── Search.tsx
+│   ├── Search.tsx
+│   └── page-transition.tsx
 ├── forms/               # Form components
-│   ├── LinkForm.tsx
 │   └── [Entity]Form.tsx
 ├── cards/               # Card components
-│   ├── LinkCard.tsx
-│   ├── LinkCard.Simple.tsx
-│   └── [Entity]Card.tsx
+│   ├── [Entity]Card.tsx
+│   └── [Entity]Card.[Variant].tsx
 ├── table/               # Table-related components
 │   └── data-box.tsx
-├── home/                # Page-specific components
-│   ├── hero-section.tsx
-│   ├── cta-section.tsx
-│   └── [section].tsx
-├── mode-toggle.tsx      # Top-level utility components
+├── dashboard/           # Dashboard-specific components (future)
+├── theme-toggle.tsx     # Top-level utility components
 └── lang-toggle.tsx
 ```
 
@@ -86,16 +104,19 @@ components/
 | Type              | Pattern                      | Example                               |
 | ----------------- | ---------------------------- | ------------------------------------- |
 | UI Components     | `lowercase-kebab.tsx`        | `button.tsx`, `card.tsx`              |
-| Shared Components | `PascalCase.tsx`             | `Modal.tsx`, `AddButton.tsx`          |
-| Forms             | `[Entity]Form.tsx`           | `LinkForm.tsx`, `UserForm.tsx`        |
-| Cards             | `[Entity]Card.tsx`           | `LinkCard.tsx`                        |
-| Card Variants     | `[Entity]Card.[Variant].tsx` | `LinkCard.Simple.tsx`                 |
+| Layouts           | `lowercase-kebab.tsx`        | `header.tsx`, `footer.tsx`            |
 | Sections          | `[name]-section.tsx`         | `hero-section.tsx`, `cta-section.tsx` |
-| Toggles/Utils     | `[name]-toggle.tsx`          | `mode-toggle.tsx`, `lang-toggle.tsx`  |
+| Shared Components | `PascalCase.tsx`             | `Modal.tsx`, `Loading.tsx`            |
+| Forms             | `[Entity]Form.tsx`           | `ExpenseForm.tsx`, `BudgetForm.tsx`   |
+| Cards             | `[Entity]Card.tsx`           | `ExpenseCard.tsx`                     |
+| Card Variants     | `[Entity]Card.[Variant].tsx` | `ExpenseCard.Summary.tsx`             |
+| Toggles/Utils     | `[name]-toggle.tsx`          | `theme-toggle.tsx`, `lang-toggle.tsx` |
 
 **Key Principles**:
 
 - `ui/` folder: Always lowercase with hyphens (shadcn convention)
+- `layouts/` folder: Always lowercase with hyphens
+- `sections/` folder: Always lowercase with hyphens
 - Other component folders: PascalCase for components
 - Group by feature/type, not by component type alone
 - Variants use dot notation: `Component.Variant.tsx`
@@ -139,52 +160,55 @@ hooks/
 i18n/
 ├── routing.ts           # next-intl routing configuration
 ├── navigation.ts        # Navigation helpers (Link, useRouter)
-├── request.ts           # Server-side request configuration
-└── locales/
-    ├── en.json          # English translations
-    ├── ar.json          # Arabic translations
-    └── ckb.json         # Kurdish translations
+└── request.ts           # Server-side request configuration
+```
+
+### `/messages` - Translation Files
+
+```
+messages/
+├── en.json              # English translations
+├── ar.json              # Arabic translations
+└── ckb.json             # Kurdish translations
 ```
 
 **Rules**:
 
 - Config files: lowercase with extension `.ts`
-- Type definitions: `[name].d.ts`
 - Locale files: ISO 639-1 language code + `.json`
+- Translation files go in `/messages`, not `/i18n/locales`
 
 ### `/lib` - Core Library Code
 
 ```
 lib/
 ├── config/              # Configuration files
-│   ├── cookie.config.ts
-│   └── pagination.config.ts
-├── db/                  # Database related
-│   ├── index.ts         # Drizzle client export
-│   └── schema.ts        # Database schema
+│   └── [name].config.ts
+├── data/                # Static data files
+│   └── [name].data.ts
 ├── react-query/         # TanStack Query setup
 │   ├── keys.ts          # Query key factories
-│   ├── actions/
-│   │   └── [entity].action.ts
-│   └── queries/
-│       └── [entity].query.ts
+│   ├── actions/         # Server actions (empty for now)
+│   ├── queries/         # Query hooks (empty for now)
+│   └── middleware/      # Query middleware (empty for now)
 ├── store/               # Zustand state management
-│   ├── modal.store.ts
 │   └── [name].store.ts
 ├── enums.ts             # App-wide enums and constants
-├── urls.ts              # Route URL constants
-├── utils.ts             # General utility functions
-└── functions.ts         # Business logic functions
+├── urls.ts              # API endpoint URL constants
+├── utils.ts             # General utility functions (cn, etc.)
+├── functions.ts         # Business logic functions
+└── error-handler.ts     # Error handling utilities
 ```
 
 **Naming Conventions**:
 
 | File Type | Pattern               | Example                                    |
 | --------- | --------------------- | ------------------------------------------ |
-| Config    | `[name].config.ts`    | `cookie.config.ts`, `pagination.config.ts` |
+| Config    | `[name].config.ts`    | `api.config.ts`, `pagination.config.ts`    |
+| Data      | `[name].data.ts`      | `categories.data.ts`, `currencies.data.ts` |
 | Store     | `[name].store.ts`     | `modal.store.ts`, `filter.store.ts`        |
-| Actions   | `[entity].action.ts`  | `links.action.ts`, `users.action.ts`       |
-| Queries   | `[entity].query.ts`   | `links.query.ts`, `users.query.ts`         |
+| Actions   | `[entity].action.ts`  | `expenses.action.ts`, `budgets.action.ts`  |
+| Queries   | `[entity].query.ts`   | `expenses.query.ts`, `budgets.query.ts`    |
 | Utils     | `[purpose].ts`        | `utils.ts`, `functions.ts`                 |
 | Constants | `[type]s.ts` (plural) | `urls.ts`, `enums.ts`                      |
 | Keys      | `keys.ts`             | `keys.ts` (for query keys)                 |
@@ -192,6 +216,7 @@ lib/
 **Key Principles**:
 
 - Config files get `.config.ts` suffix
+- Data files get `.data.ts` suffix
 - Store files get `.store.ts` suffix
 - Actions and queries named after entity (plural)
 - Use `index.ts` for main exports from a folder
@@ -235,37 +260,49 @@ public/
 ```
 types/
 ├── global.ts            # Global type definitions
-├── routes.d.ts          # Route type definitions (auto-generated)
-└── cache-life.d.ts      # Cache configuration types
+└── types.ts             # Shared type definitions
 ```
 
 **Naming Rules**:
 
-| Type              | Pattern        | Example                          |
-| ----------------- | -------------- | -------------------------------- |
-| Global types      | `global.ts`    | `global.ts`                      |
-| Type declarations | `[name].d.ts`  | `routes.d.ts`, `cache-life.d.ts` |
-| Feature types     | `[feature].ts` | `auth.ts`, `api.ts`              |
+| Type          | Pattern        | Example     |
+| ------------- | -------------- | ----------- |
+| Global types  | `global.ts`    | `global.ts` |
+| Feature types | `[feature].ts` | `types.ts`  |
 
 **Key Principles**:
 
-- Use `.d.ts` for ambient type declarations
 - Use `.ts` for exported types and interfaces
 - Keep global types in `global.ts`
+- Shared types go in `types.ts`
 
 ### `/validation` - Zod Schemas
 
 ```
 validation/
-├── links.ts             # Link validation schemas
-└── [entity].ts          # Entity validation schemas
+└── [entity].validation.ts   # Entity validation schemas
 ```
 
-**Pattern**: `[entity].ts` (plural form)
+**Pattern**: `[name].validation.ts`
 
-- Named after the entity being validated
-- Use plural form matching database table names
-- Export validation schema and inferred types
+- Zod schema definitions
+- Always end with `.validation.ts`
+- Export schemas and inferred types
+
+**Example**:
+
+```typescript
+// expense.validation.ts
+import { z } from "zod";
+
+export const ExpenseSchema = z.object({
+  amount: z.number().positive(),
+  description: z.string().min(1),
+  category: z.string(),
+});
+
+export type ExpenseFormData = z.infer<typeof ExpenseSchema>;
+```
 
 ### `/docs` - Documentation
 
@@ -404,18 +441,54 @@ export const use[Name]Store = create<[Name]State & [Name]Actions>((set) => ({
 
 ### Validation Pattern (Zod)
 
-**File**: `[entity].ts`
+**File**: `[entity].validation.ts`
 
 ```typescript
 import { z } from "zod";
 
-export const get[Entity]Validation = (t: any) =>
-  z.object({
-    // Schema definition with translations
-  });
+export const ExpenseSchema = z.object({
+  amount: z.number().positive(),
+  description: z.string().min(1),
+  category: z.string(),
+});
 
-export type [Entity]Input = z.infer<ReturnType<typeof get[Entity]Validation>>;
+export type ExpenseFormData = z.infer<typeof ExpenseSchema>;
 ```
+
+---
+
+## 🔧 Root-Level Configuration Files
+
+**Allowed root-level files**:
+
+```
+/
+├── .env                 # Environment variables
+├── .env.example         # Example environment variables (optional)
+├── .gitignore           # Git ignore rules
+├── next.config.ts       # Next.js configuration
+├── tsconfig.json        # TypeScript configuration
+├── package.json         # Dependencies and scripts
+├── bun.lockb            # Bun lock file
+├── tailwind.config.ts   # Tailwind CSS configuration
+├── postcss.config.mjs   # PostCSS configuration
+├── components.json      # shadcn/ui configuration
+├── eslint.config.mjs    # ESLint configuration
+├── proxy.ts             # Clerk middleware
+├── prisma.config.ts     # Prisma configuration (optional)
+├── README.md            # Project readme
+├── AGENTS.md            # Agent coding standards
+└── LICENSE              # License file (optional)
+```
+
+**❌ DO NOT create**:
+
+- ❌ Random `.md` files in root (use `/docs`)
+- ❌ `auth.ts` or `middleware.ts` (using Clerk instead)
+- ❌ Other config files (keep them in appropriate folders)
+- ❌ Test files in root (organize in `/tests` if needed)
+
+---
 
 ## ✅ Best Practices
 
