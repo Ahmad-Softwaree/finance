@@ -1,0 +1,78 @@
+{
+  "langs": {
+    "en": "English",
+    "ar": "العربية",
+    "ckb": "کوردی"
+  },
+  "header": {
+    "projectName": "FinanceTrack",
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Take Control of Your",
+    "titleHighlight": "Financial Future",
+    "subtitle": "Track expenses, manage budgets, and achieve your financial goals with our powerful expense management platform.",
+    "cta": {
+      "github": "View on GitHub",
+      "portfolio": "Visit Portfolio"
+    },
+    "features": {
+      "trackExpenses": "Track Expenses",
+      "realTime": "Real-Time Insights",
+      "manageBudget": "Manage Budgets",
+      "efficiently": "Efficiently",
+      "saveMoney": "Save Money",
+      "smartly": "Smartly"
+    }
+  },
+  "auth": {
+    "login": "Sign In",
+    "register": "Sign Up",
+    "logout": "Sign Out"
+  },
+  "profile": {
+    "logout": "Logout"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "github": "GitHub",
+    "portfolio": "Portfolio"
+  },
+  "pagination": {
+    "showing": "Showing",
+    "of": "of",
+    "items": "items",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "common": {
+    "no_data": "No Data Found",
+    "no_data_found": "There are no items to display at the moment."
+  },
+  "error": {
+    "title": "Oops! Something Went Wrong",
+    "description": "We encountered an unexpected error. Don't worry, our team has been notified and we're working on it.",
+    "tryAgain": "Try Again",
+    "returnHome": "Return Home",
+    "errorDetails": "Error Details"
+  },
+  "notFound": {
+    "pageNotFound": "Page Not Found",
+    "pageNotFoundDescription": "The page you're looking for seems to have wandered off. Let's get you back on track.",
+    "returnHome": "Return Home",
+    "browseProjects": "Browse Projects"
+  },
+  "signUp": {
+    "title": "Create Your Account",
+    "subtitle": "Join FinanceTrack today and take control of your financial future."
+  },
+  "signIn": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to your account and continue managing your finances with ease."
+  },
+  "dashboard": {
+    "welcome": "Welcome to your Dashboard",
+    "welcomeMessage": "Here you can track your expenses, manage your budgets, and monitor your financial goals all in one place."
+  }
+}
