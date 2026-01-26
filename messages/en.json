@@ -54,6 +54,13 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "filters": {
+    "type": "Type",
+    "selectType": "Select type",
+    "allTypes": "All Types",
+    "income": "Income",
+    "expense": "Expense"
+  },
   "common": {
     "no_data": "No Data Found",
     "no_data_found": "There are no items to display at the moment.",
@@ -97,6 +104,7 @@
   },
   "categories": {
     "title": "Categories",
+    "noData": "No categories found",
     "createSuccess": "Category created successfully",
     "updateSuccess": "Category updated successfully",
     "deleteSuccess": "Category deleted successfully",
@@ -126,6 +134,7 @@
   },
   "transactions": {
     "title": "Transactions",
+    "noData": "No transactions found",
     "createSuccess": "Transaction created successfully",
     "updateSuccess": "Transaction updated successfully",
     "deleteSuccess": "Transaction deleted successfully",

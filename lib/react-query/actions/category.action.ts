@@ -6,18 +6,35 @@ import { URLs } from "@/lib/urls";
 import { revalidatePath } from "next/cache";
 import { handleServerError } from "@/lib/error-handler";
 import { CategorySchema } from "@/validation/category.validation";
-import { Category } from "@/types/types";
+import { Category, PaginationObject } from "@/types/types";
+import { TypeQueryParams } from "@/hooks/useTypeQuery";
+import { PaginationQueryParams } from "@/hooks/usePaginationQueries";
 
 export type CRUDReturn = { message: string; data?: any };
 
-export const getCategories = async (): Promise<Category[]> => {
+export const getCategories = async (
+  searchParams?: TypeQueryParams & PaginationQueryParams
+): Promise<PaginationObject<Category>> => {
   try {
-    const result = await get(URLs.CATEGORIES, {
+    const params = new URLSearchParams();
+
+    if (searchParams?.type) {
+      params.append("type", searchParams.type);
+    }
+    if (searchParams?.page) {
+      params.append("page", searchParams.page.toString());
+    }
+    if (searchParams?.limit) {
+      params.append("limit", searchParams.limit.toString());
+    }
+
+    const url = `${URLs.CATEGORIES}${params.toString() ? `?${params}` : ""}`;
+    const result = await get(url, {
       tags: [ENUMs.TAGS.CATEGORIES],
     });
     if (result && (result as any).__isError) throw result as any;
 
-    return result.data;
+    return result;
   } catch (error) {
     return handleServerError(error) as any;
   }

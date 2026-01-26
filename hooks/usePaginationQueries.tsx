@@ -7,7 +7,7 @@ export function usePaginationQuery() {
     page: parseAsInteger.withDefault(0).withOptions({
       shallow: false,
     }),
-    limit: parseAsInteger.withDefault(0).withOptions({
+    limit: parseAsInteger.withDefault(10).withOptions({
       shallow: false,
     }),
   });

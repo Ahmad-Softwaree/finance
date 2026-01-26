@@ -83,7 +83,7 @@ export function PaginationControls({
   const pageNumbers = getPageNumbers();
 
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mt-10 ">
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <span className="hidden sm:inline">
           {t("showing")} {startItem}-{endItem} {t("of")} {total}

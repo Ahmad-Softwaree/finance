@@ -54,6 +54,13 @@
     "previous": "السابق",
     "next": "التالي"
   },
+  "filters": {
+    "type": "النوع",
+    "selectType": "اختر النوع",
+    "allTypes": "كل الأنواع",
+    "income": "دخل",
+    "expense": "مصروف"
+  },
   "common": {
     "no_data": "لا توجد بيانات",
     "no_data_found": "لا توجد عناصر لعرضها في الوقت الحالي.",
@@ -97,6 +104,7 @@
   },
   "categories": {
     "title": "الفئات",
+    "noData": "لم يتم العثور على فئات",
     "createSuccess": "تم إنشاء الفئة بنجاح",
     "updateSuccess": "تم تحديث الفئة بنجاح",
     "deleteSuccess": "تم حذف الفئة بنجاح",
@@ -126,6 +134,7 @@
   },
   "transactions": {
     "title": "المعاملات",
+    "noData": "لم يتم العثور على معاملات",
     "createSuccess": "تم إنشاء المعاملة بنجاح",
     "updateSuccess": "تم تحديث المعاملة بنجاح",
     "deleteSuccess": "تم حذف المعاملة بنجاح",

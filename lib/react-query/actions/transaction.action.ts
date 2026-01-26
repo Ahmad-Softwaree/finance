@@ -5,17 +5,34 @@ import { URLs } from "@/lib/urls";
 import { revalidatePath } from "next/cache";
 import { handleServerError } from "@/lib/error-handler";
 import { TransactionSchema } from "@/validation/transaction.validation";
-import { Transaction } from "@/types/types";
+import { Transaction, PaginationObject } from "@/types/types";
+import { TypeQueryParams } from "@/hooks/useTypeQuery";
+import { PaginationQueryParams } from "@/hooks/usePaginationQueries";
 export type CRUDReturn = { message: string; data?: any };
 
-export const getTransactions = async (): Promise<Transaction[]> => {
+export const getTransactions = async (
+  searchParams?: TypeQueryParams & PaginationQueryParams
+): Promise<PaginationObject<Transaction>> => {
   try {
-    const result = await get(URLs.TRANSACTIONS, {
+    const params = new URLSearchParams();
+
+    if (searchParams?.type) {
+      params.append("type", searchParams.type);
+    }
+    if (searchParams?.page) {
+      params.append("page", searchParams.page.toString());
+    }
+    if (searchParams?.limit) {
+      params.append("limit", searchParams.limit.toString());
+    }
+
+    const url = `${URLs.TRANSACTIONS}${params.toString() ? `?${params}` : ""}`;
+    const result = await get(url, {
       tags: [ENUMs.TAGS.TRANSACTIONS],
     });
     if (result && (result as any).__isError) throw result as any;
 
-    return result.data;
+    return result;
   } catch (error) {
     return handleServerError(error) as any;
   }
