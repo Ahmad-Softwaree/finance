@@ -71,16 +71,6 @@ export default function Footer() {
               </Button>
             </>
           )}
-
-          {!isHomePage && (
-            <Button
-              variant="ghost"
-              size="sm"
-              className="hover:bg-primary/10 hover:text-primary transition-all"
-              asChild>
-              <Link href={ENUMs.PAGES.HOME}>Back to Home</Link>
-            </Button>
-          )}
         </div>
       </div>
     </footer>

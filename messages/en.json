@@ -59,7 +59,9 @@
     "selectType": "Select type",
     "allTypes": "All Types",
     "income": "Income",
-    "expense": "Expense"
+    "expense": "Expense",
+    "year": "Year",
+    "selectYear": "Select year"
   },
   "common": {
     "no_data": "No Data Found",
@@ -98,9 +100,17 @@
     "subtitle": "Sign in to your account and continue managing your finances with ease."
   },
   "dashboard": {
-    "welcome": "Welcome to your Dashboard",
-    "welcomeMessage": "Here you can track your expenses, manage your budgets, and monitor your financial goals all in one place.",
-    "addTransaction": "Add transaction"
+    "title": "Dashboard",
+    "subtitle": "Overview of your financial activity",
+    "viewTransactions": "View Transactions",
+    "viewCategories": "View Categories",
+    "totalIncome": "Total Income",
+    "totalExpense": "Total Expense",
+    "balance": "Balance",
+    "monthlyOverview": "Monthly Overview",
+    "monthlyOverviewDescription": "Income and expense trends for this year",
+    "income": "Income",
+    "expense": "Expense"
   },
   "categories": {
     "title": "Categories",

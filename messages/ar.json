@@ -59,7 +59,9 @@
     "selectType": "اختر النوع",
     "allTypes": "كل الأنواع",
     "income": "دخل",
-    "expense": "مصروف"
+    "expense": "مصروف",
+    "year": "السنة",
+    "selectYear": "اختر السنة"
   },
   "common": {
     "no_data": "لا توجد بيانات",
@@ -98,9 +100,17 @@
     "subtitle": "سجل الدخول إلى حسابك واستمر في إدارة أموالك بسهولة."
   },
   "dashboard": {
-    "welcome": "مرحباً بك في لوحة التحكم",
-    "welcomeMessage": "هنا يمكنك تتبع نفقاتك وإدارة ميزانياتك ومراقبة أهدافك المالية في مكان واحد.",
-    "addTransaction": "زیادة مصرف"
+    "title": "لوحة التحكم",
+    "subtitle": "نظرة عامة على نشاطك المالي",
+    "viewTransactions": "عرض المعاملات",
+    "viewCategories": "عرض الفئات",
+    "totalIncome": "إجمالي الدخل",
+    "totalExpense": "إجمالي المصروفات",
+    "balance": "الرصيد",
+    "monthlyOverview": "نظرة شهرية",
+    "monthlyOverviewDescription": "اتجاهات الدخل والمصروفات لهذا العام",
+    "income": "الدخل",
+    "expense": "المصروفات"
   },
   "categories": {
     "title": "الفئات",
