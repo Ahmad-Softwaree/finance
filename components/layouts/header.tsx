@@ -3,11 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
+  ChartBarStacked,
   CircleGauge,
+  DollarSign,
   Github,
   Home,
   LogIn,
-  Settings,
   Sparkles,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -78,8 +79,29 @@ export default function Header() {
                   avatarBox:
                     "w-9 h-9 ring-2 ring-primary/20 hover:ring-primary/40 transition-all",
                 },
-              }}
-            />
+              }}>
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  href={ENUMs.PAGES.DASHBOARD}
+                  label="Dashboard"
+                  labelIcon={<CircleGauge className="w-4 h-4" />}
+                />
+              </UserButton.MenuItems>
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  href={ENUMs.PAGES.CATEGORIES}
+                  label="Categories"
+                  labelIcon={<ChartBarStacked className="w-4 h-4" />}
+                />
+              </UserButton.MenuItems>
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  href={ENUMs.PAGES.TRANSACTIONS}
+                  label="Transactions"
+                  labelIcon={<DollarSign className="w-4 h-4" />}
+                />
+              </UserButton.MenuItems>
+            </UserButton>
             {isHomePage && (
               <Button
                 variant="outline"

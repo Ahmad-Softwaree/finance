@@ -9,6 +9,14 @@
     "home": "سەرەکی",
     "dashboard": "داشبۆرد"
   },
+  "breadcrumbs": {
+    "home": "سەرەکی",
+    "dashboard": "داشبۆرد",
+    "categories": "پۆلەکان",
+    "transactions": "مامەڵەکان",
+    "new": "نوێ",
+    "edit": "نوێکردنەوە"
+  },
   "hero": {
     "title": "کۆنترۆڵی",
     "titleHighlight": "داهاتووی دارایی",
@@ -48,7 +56,19 @@
   },
   "common": {
     "no_data": "هیچ داتایەک نییە",
-    "no_data_found": "لە ئێستادا هیچ بابەتێک بۆ پیشاندان نییە."
+    "no_data_found": "لە ئێستادا هیچ بابەتێک بۆ پیشاندان نییە.",
+    "create": "دروستکردن",
+    "update": "نوێکردنەوە",
+    "submitting": "ناردن...",
+    "edit": "دەستکاریکردن",
+    "delete": "سڕینەوە",
+    "deleteDialog": {
+      "title": "دڵنیایت؟",
+      "description": "ناتوانیت ئەم کردارە بگەڕێنیتەوە. ئەم بابەتە بە هەمیشەیی دەسڕێتەوە.",
+      "cancel": "هەڵوەشاندنەوە",
+      "confirm": "سڕینەوە",
+      "deleting": "سڕینەوە..."
+    }
   },
   "error": {
     "title": "ببورە! هەڵەیەک ڕوویدا",
@@ -72,6 +92,98 @@
   },
   "dashboard": {
     "welcome": "بەخێربێیت بۆ داشبۆردەکەت",
-    "welcomeMessage": "لێرە دەتوانیت خەرجییەکانت بەدواداچوون بکەیت، بودجەکانت بەڕێوە ببەیت و ئامانجە دارایییەکانت لە یەک شوێن بپارێزیت."
+    "welcomeMessage": "لێرە دەتوانیت خەرجییەکانت بەدواداچوون بکەیت، بودجەکانت بەڕێوە ببەیت و ئامانجە دارایییەکانت لە یەک شوێن بپارێزیت.",
+    "addTransaction": "زیادکردنی خەرجی"
+  },
+  "categories": {
+    "title": "پۆلەکان",
+    "createSuccess": "پۆل بە سەرکەوتوویی دروستکرا",
+    "updateSuccess": "پۆل بە سەرکەوتوویی نوێکرایەوە",
+    "deleteSuccess": "پۆل بە سەرکەوتوویی سڕایەوە",
+    "edit": "دەستکاریکردن",
+    "delete": "سڕینەوە",
+    "type": {
+      "income": "داهات",
+      "expense": "خەرجی"
+    },
+    "deleteDialog": {
+      "title": "سڕینەوەی پۆل",
+      "description": "دڵنیایت لە سڕینەوەی '{name}'؟ ناتوانیت ئەم کردارە بگەڕێنیتەوە."
+    },
+    "form": {
+      "typeLabel": "جۆر",
+      "typePlaceholder": "جۆر هەڵبژێرە",
+      "income": "داهات",
+      "expense": "خەرجی",
+      "enNameLabel": "ناو بە ئینگلیزی",
+      "enNamePlaceholder": "ناوی پۆل بە ئینگلیزی بنووسە",
+      "arNameLabel": "ناو بە عەرەبی",
+      "arNamePlaceholder": "أدخل اسم الفئة بالعربية",
+      "ckbNameLabel": "ناو بە کوردی",
+      "ckbNamePlaceholder": "ناوی پۆلەکە بە کوردی بنووسە"
+    },
+    "add": "زیادکردنی جۆر"
+  },
+  "transactions": {
+    "title": "مامەڵەکان",
+    "createSuccess": "مامەڵە بە سەرکەوتوویی دروستکرا",
+    "updateSuccess": "مامەڵە بە سەرکەوتوویی نوێکرایەوە",
+    "deleteSuccess": "مامەڵە بە سەرکەوتوویی سڕایەوە",
+    "edit": "دەستکاریکردن",
+    "delete": "سڕینەوە",
+    "amount": "بڕ",
+    "description": "وەسف",
+    "type": {
+      "income": "داهات",
+      "expense": "خەرجی"
+    },
+    "deleteDialog": {
+      "title": "سڕینەوەی مامەڵە",
+      "description": "دڵنیایت لە سڕینەوەی ئەم مامەڵەیە؟ ناتوانیت ئەم کردارە بگەڕێنیتەوە."
+    },
+    "form": {
+      "typeLabel": "جۆر",
+      "typePlaceholder": "جۆر هەڵبژێرە",
+      "income": "داهات",
+      "expense": "خەرجی",
+      "categoryLabel": "پۆل",
+      "categoryPlaceholder": "پۆل هەڵبژێرە",
+      "amountLabel": "بڕ",
+      "amountPlaceholder": "بڕ بنووسە",
+      "dateLabel": "بەروار",
+      "datePlaceholder": "بەروار هەڵبژێرە",
+      "enDescLabel": "وەسف بە ئینگلیزی",
+      "enDescPlaceholder": "وەسف بە ئینگلیزی بنووسە",
+      "arDescLabel": "وەسف بە عەرەبی",
+      "arDescPlaceholder": "أدخل الوصف بالعربية",
+      "ckbDescLabel": "وەسف بە کوردی",
+      "ckbDescPlaceholder": "وەسفەکە بە کوردی بنووسە"
+    },
+    "add": "زیادکردنی مامەڵە"
+  },
+  "validation": {
+    "category": {
+      "nameRequired": "ناو پێویستە",
+      "nameTooLong": "ناو زۆر درێژە (زۆرترین ١٠٠ پیت)",
+      "invalidType": "جۆرەکە دەبێت داهات یان خەرجی بێت"
+    },
+    "transaction": {
+      "amountPositive": "بڕەکە دەبێت ئەرێنی بێت",
+      "descriptionRequired": "وەسف پێویستە",
+      "descriptionTooLong": "وەسف زۆر درێژە (زۆرترین ٢٥٥ پیت)",
+      "invalidType": "جۆرەکە دەبێت داهات یان خەرجی بێت",
+      "invalidCategoryId": "ناسنامەی پۆل هەڵەیە"
+    }
+  },
+  "errors": {
+    "unauthorized": "دەستڕاگەیشتنی ڕێپێنەدراو",
+    "alreadyLoggedIn": "پێشتر چوویتە ژوورەوە",
+    "categoryCreate": "شکستی هێنا لە دروستکردنی پۆل",
+    "categoryUpdate": "شکستی هێنا لە نوێکردنەوەی پۆل",
+    "categoryDelete": "شکستی هێنا لە سڕینەوەی پۆل",
+    "categorySelectionFetch": "شکستی هێنا لە وەرگرتنی پۆلەکان",
+    "transactionCreate": "شکستی هێنا لە دروستکردنی مامەڵە",
+    "transactionUpdate": "شکستی هێنا لە نوێکردنەوەی مامەڵە",
+    "transactionDelete": "شکستی هێنا لە سڕینەوەی مامەڵە"
   }
 }

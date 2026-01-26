@@ -9,6 +9,14 @@
     "home": "الرئيسية",
     "dashboard": "لوحة التحكم"
   },
+  "breadcrumbs": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "categories": "الفئات",
+    "transactions": "المعاملات",
+    "new": "جديد",
+    "edit": "تحديث"
+  },
   "hero": {
     "title": "تحكم في",
     "titleHighlight": "مستقبلك المالي",
@@ -48,7 +56,19 @@
   },
   "common": {
     "no_data": "لا توجد بيانات",
-    "no_data_found": "لا توجد عناصر لعرضها في الوقت الحالي."
+    "no_data_found": "لا توجد عناصر لعرضها في الوقت الحالي.",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "submitting": "جاري الإرسال...",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteDialog": {
+      "title": "هل أنت متأكد؟",
+      "description": "لا يمكن التراجع عن هذا الإجراء. سيتم حذف هذا العنصر نهائياً.",
+      "cancel": "إلغاء",
+      "confirm": "حذف",
+      "deleting": "جاري الحذف..."
+    }
   },
   "error": {
     "title": "عذراً! حدث خطأ ما",
@@ -72,6 +92,98 @@
   },
   "dashboard": {
     "welcome": "مرحباً بك في لوحة التحكم",
-    "welcomeMessage": "هنا يمكنك تتبع نفقاتك وإدارة ميزانياتك ومراقبة أهدافك المالية في مكان واحد."
+    "welcomeMessage": "هنا يمكنك تتبع نفقاتك وإدارة ميزانياتك ومراقبة أهدافك المالية في مكان واحد.",
+    "addTransaction": "زیادة مصرف"
+  },
+  "categories": {
+    "title": "الفئات",
+    "createSuccess": "تم إنشاء الفئة بنجاح",
+    "updateSuccess": "تم تحديث الفئة بنجاح",
+    "deleteSuccess": "تم حذف الفئة بنجاح",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "type": {
+      "income": "دخل",
+      "expense": "مصروف"
+    },
+    "deleteDialog": {
+      "title": "حذف الفئة",
+      "description": "هل أنت متأكد من حذف '{name}'؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "form": {
+      "typeLabel": "النوع",
+      "typePlaceholder": "اختر النوع",
+      "income": "دخل",
+      "expense": "مصروف",
+      "enNameLabel": "الاسم بالإنجليزية",
+      "enNamePlaceholder": "أدخل اسم الفئة بالإنجليزية",
+      "arNameLabel": "الاسم بالعربية",
+      "arNamePlaceholder": "أدخل اسم الفئة بالعربية",
+      "ckbNameLabel": "الاسم بالكردية",
+      "ckbNamePlaceholder": "ناوی پۆلەکە بە کوردی بنووسە"
+    },
+    "add": "زیادة نوع"
+  },
+  "transactions": {
+    "title": "المعاملات",
+    "createSuccess": "تم إنشاء المعاملة بنجاح",
+    "updateSuccess": "تم تحديث المعاملة بنجاح",
+    "deleteSuccess": "تم حذف المعاملة بنجاح",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "amount": "المبلغ",
+    "description": "الوصف",
+    "type": {
+      "income": "دخل",
+      "expense": "مصروف"
+    },
+    "deleteDialog": {
+      "title": "حذف المعاملة",
+      "description": "هل أنت متأكد من حذف هذه المعاملة؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "form": {
+      "typeLabel": "النوع",
+      "typePlaceholder": "اختر النوع",
+      "income": "دخل",
+      "expense": "مصروف",
+      "categoryLabel": "الفئة",
+      "categoryPlaceholder": "اختر الفئة",
+      "amountLabel": "المبلغ",
+      "amountPlaceholder": "أدخل المبلغ",
+      "dateLabel": "التاريخ",
+      "datePlaceholder": "اختر التاريخ",
+      "enDescLabel": "الوصف بالإنجليزية",
+      "enDescPlaceholder": "أدخل الوصف بالإنجليزية",
+      "arDescLabel": "الوصف بالعربية",
+      "arDescPlaceholder": "أدخل الوصف بالعربية",
+      "ckbDescLabel": "الوصف بالكردية",
+      "ckbDescPlaceholder": "وەسفەکە بە کوردی بنووسە"
+    },
+    "add": "زیادة صرف"
+  },
+  "validation": {
+    "category": {
+      "nameRequired": "الاسم مطلوب",
+      "nameTooLong": "الاسم طويل جداً (الحد الأقصى 100 حرف)",
+      "invalidType": "يجب أن يكون النوع دخل أو مصروف"
+    },
+    "transaction": {
+      "amountPositive": "يجب أن يكون المبلغ موجباً",
+      "descriptionRequired": "الوصف مطلوب",
+      "descriptionTooLong": "الوصف طويل جداً (الحد الأقصى 255 حرف)",
+      "invalidType": "يجب أن يكون النوع دخل أو مصروف",
+      "invalidCategoryId": "معرف الفئة غير صالح"
+    }
+  },
+  "errors": {
+    "unauthorized": "وصول غير مصرح به",
+    "alreadyLoggedIn": "أنت مسجل الدخول بالفعل",
+    "categoryCreate": "فشل إنشاء الفئة",
+    "categoryUpdate": "فشل تحديث الفئة",
+    "categoryDelete": "فشل حذف الفئة",
+    "categorySelectionFetch": "فشل جلب الفئات",
+    "transactionCreate": "فشل إنشاء المعاملة",
+    "transactionUpdate": "فشل تحديث المعاملة",
+    "transactionDelete": "فشل حذف المعاملة"
   }
 }

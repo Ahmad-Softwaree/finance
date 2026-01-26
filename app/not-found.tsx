@@ -1,12 +1,6 @@
-"use client";
-import Error from "next/error";
+import { redirect } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
-export default function NotFound() {
-  return (
-    <html lang="en">
-      <body>
-        <Error statusCode={404} />
-      </body>
-    </html>
-  );
+export default function RootNotFound() {
+  redirect(`/${routing.defaultLocale}`);
 }

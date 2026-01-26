@@ -121,9 +121,10 @@ This file contains **strict coding standards and architecture patterns** for the
 #### **Database & ORM**
 
 - **PostgreSQL** - Relational database
-- **Prisma** - Database ORM and migrations
-  - Use Prisma Client for all database queries
-  - Use Prisma Migrate for schema changes
+- **Drizzle ORM** - Database ORM and migrations
+  - Use Drizzle for all database queries
+  - Use Drizzle Kit for schema changes and migrations
+  - Schema files go in `drizzle/db/schema.ts`
 
 #### **File Uploads** (if needed)
 
@@ -143,7 +144,7 @@ This file contains **strict coding standards and architecture patterns** for the
 - ❌ Cookie libraries: js-cookie, universal-cookie, react-cookie, or native document.cookie (use cookies-next only)
 - ❌ Raw URL params: searchParams, useSearchParams, URLSearchParams (use nuqs only)
 - ❌ Other auth: NextAuth.js, Auth.js, Passport.js (use Clerk only)
-- ❌ Other ORMs: TypeORM, Sequelize, Drizzle (use Prisma only)
+- ❌ Other ORMs: TypeORM, Sequelize, Prisma (use Drizzle only)
   Before adding ANY new library:
 
 1. Check if it's in the APPROVED list

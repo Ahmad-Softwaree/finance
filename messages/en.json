@@ -9,6 +9,14 @@
     "home": "Home",
     "dashboard": "Dashboard"
   },
+  "breadcrumbs": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "categories": "Categories",
+    "transactions": "Transactions",
+    "new": "New",
+    "edit": "Update"
+  },
   "hero": {
     "title": "Take Control of Your",
     "titleHighlight": "Financial Future",
@@ -48,7 +56,19 @@
   },
   "common": {
     "no_data": "No Data Found",
-    "no_data_found": "There are no items to display at the moment."
+    "no_data_found": "There are no items to display at the moment.",
+    "create": "Create",
+    "update": "Update",
+    "submitting": "Submitting...",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteDialog": {
+      "title": "Are you sure?",
+      "description": "This action cannot be undone. This will permanently delete this item.",
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    }
   },
   "error": {
     "title": "Oops! Something Went Wrong",
@@ -72,6 +92,98 @@
   },
   "dashboard": {
     "welcome": "Welcome to your Dashboard",
-    "welcomeMessage": "Here you can track your expenses, manage your budgets, and monitor your financial goals all in one place."
+    "welcomeMessage": "Here you can track your expenses, manage your budgets, and monitor your financial goals all in one place.",
+    "addTransaction": "Add transaction"
+  },
+  "categories": {
+    "title": "Categories",
+    "createSuccess": "Category created successfully",
+    "updateSuccess": "Category updated successfully",
+    "deleteSuccess": "Category deleted successfully",
+    "edit": "Edit",
+    "delete": "Delete",
+    "type": {
+      "income": "Income",
+      "expense": "Expense"
+    },
+    "deleteDialog": {
+      "title": "Delete Category",
+      "description": "Are you sure you want to delete '{name}'? This action cannot be undone."
+    },
+    "form": {
+      "typeLabel": "Type",
+      "typePlaceholder": "Select type",
+      "income": "Income",
+      "expense": "Expense",
+      "enNameLabel": "English Name",
+      "enNamePlaceholder": "Enter category name in English",
+      "arNameLabel": "Arabic Name",
+      "arNamePlaceholder": "أدخل اسم الفئة بالعربية",
+      "ckbNameLabel": "Kurdish Name",
+      "ckbNamePlaceholder": "ناوی پۆلەکە بە کوردی بنووسە"
+    },
+    "add": "Add category"
+  },
+  "transactions": {
+    "title": "Transactions",
+    "createSuccess": "Transaction created successfully",
+    "updateSuccess": "Transaction updated successfully",
+    "deleteSuccess": "Transaction deleted successfully",
+    "edit": "Edit",
+    "delete": "Delete",
+    "amount": "Amount",
+    "description": "Description",
+    "type": {
+      "income": "Income",
+      "expense": "Expense"
+    },
+    "deleteDialog": {
+      "title": "Delete Transaction",
+      "description": "Are you sure you want to delete this transaction? This action cannot be undone."
+    },
+    "form": {
+      "typeLabel": "Type",
+      "typePlaceholder": "Select type",
+      "income": "Income",
+      "expense": "Expense",
+      "categoryLabel": "Category",
+      "categoryPlaceholder": "Select category",
+      "amountLabel": "Amount",
+      "amountPlaceholder": "Enter amount",
+      "dateLabel": "Date",
+      "datePlaceholder": "Pick a date",
+      "enDescLabel": "English Description",
+      "enDescPlaceholder": "Enter description in English",
+      "arDescLabel": "Arabic Description",
+      "arDescPlaceholder": "أدخل الوصف بالعربية",
+      "ckbDescLabel": "Kurdish Description",
+      "ckbDescPlaceholder": "وەسفەکە بە کوردی بنووسە"
+    },
+    "add": "Add transaction"
+  },
+  "validation": {
+    "category": {
+      "nameRequired": "Name is required",
+      "nameTooLong": "Name is too long (max 100 characters)",
+      "invalidType": "Type must be INCOME or EXPENSE"
+    },
+    "transaction": {
+      "amountPositive": "Amount must be positive",
+      "descriptionRequired": "Description is required",
+      "descriptionTooLong": "Description is too long (max 255 characters)",
+      "invalidType": "Type must be INCOME or EXPENSE",
+      "invalidCategoryId": "Invalid category ID"
+    }
+  },
+  "errors": {
+    "unauthorized": "Unauthorized access",
+    "alreadyLoggedIn": "Already logged in",
+    "categoryCreate": "Failed to create category",
+    "categoryUpdate": "Failed to update category",
+    "categoryDelete": "Failed to delete category",
+    "categorySelectionFetch": "Failed to fetch categories",
+    "transactionCreate": "Failed to create transaction",
+    "transactionUpdate": "Failed to update transaction",
+    "transactionDelete": "Failed to delete transaction"
   }
 }

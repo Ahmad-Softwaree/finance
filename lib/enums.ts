@@ -3,13 +3,17 @@ export const ENUMs = {
     PER_PAGE: 30,
     DEFAULT_LANG: "ckb",
   },
-  TAGS: {},
+  TAGS: {
+    TRANSACTIONS: "transactions",
+    CATEGORIES: "categories",
+  },
   PAGES: {
     HOME: "/",
     LOGIN: "/sign-in",
     REGISTER: "/sign-up",
     DASHBOARD: "/dashboard",
-    PROFILE: "/profile",
+    TRANSACTIONS: "/dashboard/transactions",
+    CATEGORIES: "/dashboard/categories",
   },
 } as const;
 

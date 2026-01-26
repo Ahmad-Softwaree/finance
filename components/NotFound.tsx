@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Home, Search } from "lucide-react";
+import { Home } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 const NotFoundComponent = () => {

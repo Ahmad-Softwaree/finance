@@ -475,7 +475,7 @@ export type ExpenseFormData = z.infer<typeof ExpenseSchema>;
 ├── components.json      # shadcn/ui configuration
 ├── eslint.config.mjs    # ESLint configuration
 ├── proxy.ts             # Clerk middleware
-├── prisma.config.ts     # Prisma configuration (optional)
+├── drizzle.config.ts    # Drizzle ORM configuration
 ├── README.md            # Project readme
 ├── AGENTS.md            # Agent coding standards
 └── LICENSE              # License file (optional)

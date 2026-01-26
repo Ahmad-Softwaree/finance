@@ -1,6 +1,3 @@
-import { QueryParam } from "@/types/global";
-import { QueryClient } from "@tanstack/react-query";
-
 export const isFileForm = (form: any): boolean => {
   if (!form) return false;
 
@@ -82,37 +79,4 @@ export const buildFormData = (form: any): FormData => {
   });
 
   return formData;
-};
-
-export const invalidateQueries = async (
-  queryClient: QueryClient,
-  name: string
-) => {
-  return queryClient.invalidateQueries({
-    predicate: (query) => {
-      const queryKey: any = query.queryKey[0];
-      const isMatch =
-        typeof queryKey === "string"
-          ? queryKey === name || queryKey.includes(name)
-          : queryKey.some((key: string) => key.includes(name));
-
-      return isMatch;
-    },
-  });
-};
-
-export const buildQueryString = (params: QueryParam): string => {
-  return Object.entries(params)
-    .filter(([_, value]) => value !== undefined && value !== "")
-    .flatMap(([key, value]) => {
-      if (Array.isArray(value)) {
-        return value.map(
-          (v) => `${encodeURIComponent(key)}=${encodeURIComponent(String(v))}`
-        );
-      }
-      return [
-        `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`,
-      ];
-    })
-    .join("&");
 };

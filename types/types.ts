@@ -1,6 +1,32 @@
-export type QueryParam = {
-  page?: number | string;
-  limit?: number | string;
-  search?: string;
-  status?: string;
+export enum TransactionType {
+  INCOME = "INCOME",
+  EXPENSE = "EXPENSE",
+}
+
+export type Category = {
+  id: string;
+  enName: string;
+  arName: string;
+  ckbName: string;
+  name: string;
+  type: TransactionType;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type Transaction = {
+  id: string;
+  amount: number;
+  type: TransactionType;
+  enDesc: string;
+  arDesc: string;
+  ckbDesc: string;
+  desc: string;
+  categoryId: string;
+  category: Category;
+  userId: string;
+  date: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };
